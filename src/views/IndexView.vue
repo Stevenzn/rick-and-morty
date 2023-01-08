@@ -1,28 +1,29 @@
 <template>
-  <div>
-    <HeaderComponent></HeaderComponent>
-    <h1>Hola desde la vista <strong>INDEX</strong></h1>
-    
-  </div>
+  <HeaderComponent></HeaderComponent>
+  <main>
+    <div class="main-content">
+      <CardComponent />
+    </div>
+  </main>
+  <FooterComponent></FooterComponent>
 </template>
 
 <script>
-import axios from "axios";
-import enviroment from "../enviroments/enviroment.js";
 import HeaderComponent from "../components/HeaderComponent.vue";
+import CardComponent from "../components/CardComponent.vue";
+import FooterComponent from "../components/FooterComponent.vue";
 export default {
   name: "IndexView",
   components: {
     HeaderComponent,
-  },
-
-  created() {
-    axios.get(enviroment.URL_API + "character").then((response) => {
-      console.log(response.data);
-    });
+    CardComponent,
+    FooterComponent,
   },
 };
 </script>
 
 <style>
+.main-content {
+  width: auto;
+}
 </style>
