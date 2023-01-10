@@ -1,6 +1,9 @@
 <template>
+  <div class="input-container">
+    <input placeholder="Search character" type="text" id="" v-model="search" />
+  </div>
   <div v-if="characters && characters.length >= 1" class="cards-container">
-    <div v-for="character in characters" :key="character.id" class="card">
+    <div v-for="character in filterSearch" :key="character.id" class="card">
       <figure class="img-content">
         <img class="img" :src="character.image" :alt="character.name" />
       </figure>
@@ -47,7 +50,15 @@ export default {
       characters: [],
       meta: null,
       counter: 1,
+      search: "",
     };
+  },
+  computed: {
+    filterSearch() {
+      return this.characters.filter((post) => {
+        return post.name.toLowerCase().includes(this.search.toLowerCase());
+      });
+    },
   },
   mounted() {
     this.getCharacters();
@@ -94,7 +105,21 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
+.input-container {
+  display: flex;
+  margin: 0 auto;
+  width: 30%;
+  padding: 1rem;
+}
+input {
+  width: 100%;
+  padding: 1rem;
+  height: 20px;
+  border-radius: 1px;
+}
+
+
 @import "../status-specie.scss";
 p,
 h1 {
@@ -118,6 +143,12 @@ h1 {
 .card h1 {
   text-align: center;
   font-size: 1.3rem;
+  transition: all 0.3s ease;
+}
+
+.card h1:hover {
+  color: #a1140a;
+  cursor: pointer;
 }
 
 .img-content {
@@ -159,7 +190,7 @@ h1 {
   text-align: center;
 }
 
-.card-content-location{
+.card-content-location {
   color: rgb(109, 10, 109);
 }
 

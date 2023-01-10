@@ -6,24 +6,16 @@
         alt="Logo"
       />
     </div>
-    <div class="input-container">
-      <input
-        placeholder="Search character"
-        type="text"
-        name="search"
-        id=""
-        v-model="Search"
-      />
-    </div>
+
     <nav class="nav-content">
       <ul class="nav-ul">
-        <li class="nav-link"><a href="">Episodes</a></li>
-        <li class="nav-link"><a href="">aaaaa</a></li>
-        <li class="nav-link"><a href="">aaaaa</a></li>
+        <li class="nav-link"><router-link to="/">Home</router-link></li>
+        <li class="nav-link">
+          <router-link to="/episodes-view">Episodes</router-link>
+        </li>
       </ul>
     </nav>
   </header>
-  <p>{{ this.Search }}</p>
 </template>
 
 <script>
@@ -34,9 +26,6 @@ export default {
     return {
       Search: "",
     };
-  },
-  computed: {
-    filterSearch() {},
   },
 };
 </script>

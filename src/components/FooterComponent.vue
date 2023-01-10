@@ -22,6 +22,7 @@ export default {
     align-items: center;
     justify-content: center;
     margin-top: 1rem;
+    padding: 1rem;
 }
 
 </style>
