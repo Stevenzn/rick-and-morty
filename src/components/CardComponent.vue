@@ -85,6 +85,11 @@ export default {
 
       if (this.counter == 1) {
         this.counter = 1;
+        this.$swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Something went wrong!",
+        });
       } else {
         this.counter--;
       }
