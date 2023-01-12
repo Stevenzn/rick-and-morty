@@ -141,7 +141,6 @@ h1 {
   width: 23%;
   padding: 1rem;
   margin: 10px;
-  background-color: #e9e0ff;
   border-radius: 5px;
 }
 
