@@ -111,6 +111,7 @@ export default {
 </script>
 
 <style lang="scss">
+@import "../status-specie.scss";
 .input-container {
   display: flex;
   margin: 0 auto;
@@ -124,8 +125,6 @@ input {
   border-radius: 1px;
 }
 
-
-@import "../status-specie.scss";
 p,
 h1 {
   margin: 0;
@@ -138,9 +137,9 @@ h1 {
 }
 
 .card {
-  width: 23%;
+  min-width: 190px;
+  width: 25%;
   padding: 1rem;
-  margin: 10px;
   border-radius: 5px;
 }
 
@@ -175,8 +174,6 @@ h1 {
   cursor: pointer;
 }
 
-.img-content:hover {
-}
 .card-characters {
   display: flex;
   text-transform: uppercase;
@@ -215,5 +212,85 @@ h1 {
   font-weight: bold;
 
   color: $unknown;
+}
+
+/* Responsive Design */
+
+@media screen and (max-width: 1110px) {
+  .input-container {
+    width: 50%;
+  }
+
+  .cards-container {
+    display: flex;
+    width: 90%;
+  }
+
+  .card {
+    width: 25%;
+  }
+
+  .card h1 {
+    text-align: center;
+    font-size: 1.2rem;
+  }
+  .card-characters {
+    display: flex;
+  }
+
+  .card-characters p {
+    font-size: 0.9rem;
+  }
+}
+@media screen and (max-width: 999px) {
+  .input-container {
+    width: 50%;
+  }
+  .cards-container {
+    display: flex;
+  }
+
+  .card {
+    width: 25%;
+    border-radius: 5px;
+  }
+
+  .card h1 {
+    text-align: center;
+    font-size: 1.2rem;
+  }
+  .card-characters {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .card-characters p {
+    font-size: 0.9rem;
+    padding: 0.5rem;
+  }
+}
+
+@media screen and (max-width: 844px) {
+  .cards-container {
+    width: 100%;
+  }
+  .card {
+    width: 33%;
+  }
+}
+
+@media screen and (max-width: 569px) {
+  .card {
+    width: 50%;
+  }
+  .input-container {
+    width: 80%;
+  }
+}
+
+@media screen and (max-width: 379px) {
+  .card {
+    min-width: 120px;
+  }
 }
 </style>
