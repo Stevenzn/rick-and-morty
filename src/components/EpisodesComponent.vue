@@ -1,8 +1,8 @@
 <template>
   <div>
-    <ul v-if="episodes && episodes.length >= 1" class="cards-container">
-      <div v-for="episode in episodes" :key="episode.id" class="card">
-        <li>
+    <ul v-if="episodes && episodes.length >= 1" class="cards-container-episode">
+      <div v-for="episode in episodes" :key="episode.id" class="card-episode">
+        <li class="episodes">
           <button class="btn-Episode" @click="getCharactersEpisode">
             <h1 class="card-content-paragrapg">{{ episode.name }}</h1>
             <div class="card-characters">
@@ -16,12 +16,12 @@
     </ul>
     <div class="btn-container">
       <PaginationBtnComponent
-        @click="scrollToTop(), prevEpisodes()"
+        @click="Scroll(), prevEpisodes()"
         nameBtn="prev"
       ></PaginationBtnComponent>
       <span>{{ counter }}</span>
       <PaginationBtnComponent
-        @click="scrollToTop(), nextEpisodess()"
+        @click="Scroll(), nextEpisodess()"
         nameBtn="next"
       ></PaginationBtnComponent>
     </div>
@@ -48,6 +48,14 @@ export default {
   },
 
   methods: {
+    Scroll() {
+      $("html, body").animate(
+        {
+          scrollTop: $("#scrollToTop").offset().top,
+        },
+        600
+      );
+    },
     async getEpisodes() {
       axios.get(enviroment.URL_API + "episode").then((response) => {
         this.episodes = response.data.results;
@@ -88,30 +96,53 @@ export default {
         this.counter--;
       }
     },
-    scrollToTop() {
-      let currentScroll = document.documentElement.scrollTop,
-        int = setInterval(frame, 6);
-
-      function frame() {
-        if (0 > currentScroll) clearInterval(int);
-        else {
-          currentScroll = currentScroll - 12;
-          document.documentElement.scrollTop = currentScroll;
-        }
-      }
-    },
   },
 };
 </script>
 
-<style scoped|>
+<style scoped>
+.cards-container-episode{
+  display: flex;
+  flex-wrap: wrap;
+  width: 90%;
+  margin: 0 auto;
+}
 ul {
   list-style: none;
+  font-size: 10px;
 }
 .btn-Episode {
   border: none;
   background: none;
   width: 100%;
   cursor: pointer;
+}
+
+.episodes {
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  width: 220px;
+  height: 110px;
+  padding: 1rem;
+  margin: 1rem;
+}
+
+@media  screen and (max-width:884px) {
+    .cards-container-episode{
+      width: 100%;
+    }
+}
+
+@media  screen and (max-width:795px) {
+    .cards-container-episode{
+      width: 70%;
+    }
+}
+@media  screen and (max-width:777px) {
+    .cards-container-episode{
+      width: 100%;
+    }
+    .episodes{
+      width: 300px;
+    }
 }
 </style>
