@@ -1,5 +1,5 @@
 <template>
-  <header class="header">
+  <header id="scrollToTop"  class="header">
     <div class="logo-container">
       <img
         src="https://1000marcas.net/wp-content/uploads/2022/04/Rick-and-Morty.png"

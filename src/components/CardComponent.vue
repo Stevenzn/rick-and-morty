@@ -1,37 +1,46 @@
 <template>
-  <div class="input-container">
-    <input placeholder="Search character" type="text" id="" v-model="search" />
-  </div>
-  <div v-if="characters && characters.length >= 1" class="cards-container">
-    <div v-for="character in filterSearch" :key="character.id" class="card">
-      <figure class="img-content">
-        <img class="img" :src="character.image" :alt="character.name" />
-      </figure>
-      <h1 class="card-content-paragrapg">{{ character.name }}</h1>
-      <div class="card-characters">
-        <p :class="character.status" class="card-content-span">
-          {{ character.status }}
-        </p>
-        <p class="card-content-span">{{ character.species }}</p>
-        <p class="card-content-span">{{ character.gender }}</p>
-      </div>
-      <div class="card-more-info">
-        <p class="card-content-span"></p>
-        <p class="card-content-location">{{ character.location.name }}</p>
+  <div>
+    <div class="input-container">
+      <input
+        placeholder="Search character"
+        type="text"
+        id=""
+        v-model="search"
+      />
+    </div>
+    <div v-if="characters && characters.length >= 1" class="cards-container">
+      <div v-for="character in filterSearch" :key="character.id" class="card">
+        <figure class="img-content">
+          <img class="img" :src="character.image" :alt="character.name" />
+        </figure>
+        <h1 class="card-content-paragrapg">{{ character.name }}</h1>
+        <div class="card-characters">
+          <p :class="character.status" class="card-content-span">
+            {{ character.status }}
+          </p>
+          <p class="card-content-span">{{ character.species }}</p>
+          <p class="card-content-span">{{ character.gender }}</p>
+        </div>
+        <div class="card-more-info">
+          <p class="card-content-span"></p>
+          <p class="card-content-location">{{ character.location.name }}</p>
+        </div>
       </div>
     </div>
-  </div>
-  <div class="btn-container">
-    <pagination-btn-component
-      @click="scrollToTop(), prevCharacters()"
-      nameBtn="Prev"
-    ></pagination-btn-component>
+    <div class="btn-container">
+      <pagination-btn-component
+        id="refresh"
+        @click="prevCharacters(), Scroll()"
+        nameBtn="Prev"
+      ></pagination-btn-component>
 
-    <span>{{ counter }}</span>
-    <pagination-btn-component
-      @click="scrollToTop(), nextCharacters()"
-      nameBtn="Next"
-    ></pagination-btn-component>
+      <span>{{ counter }}</span>
+      <pagination-btn-component
+        id="refresh"
+        @click="nextCharacters(), Scroll()"
+        nameBtn="Next"
+      ></pagination-btn-component>
+    </div>
   </div>
 </template>
 
@@ -64,6 +73,15 @@ export default {
     this.getCharacters();
   },
   methods: {
+    Scroll() {
+      $("html, body").animate(
+        {
+          scrollTop: $("#scrollToTop").offset().top,
+        },
+        600
+      );
+    },
+
     async getCharacters() {
       axios.get(enviroment.URL_API + "character").then((response) => {
         this.characters = response.data.results;

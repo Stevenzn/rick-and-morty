@@ -1,28 +1,30 @@
 <template>
-  <ul v-if="episodes && episodes.length >= 1" class="cards-container">
-    <div v-for="episode in episodes" :key="episode.id" class="card">
-      <li>
-        <button class="btn-Episode" @click="getCharactersEpisode">
-          <h1 class="card-content-paragrapg">{{ episode.name }}</h1>
-          <div class="card-characters">
-            <p style="color: blue" class="card-content-span">
-              {{ episode.air_date }}
-            </p>
-          </div>
-        </button>
-      </li>
+  <div>
+    <ul v-if="episodes && episodes.length >= 1" class="cards-container">
+      <div v-for="episode in episodes" :key="episode.id" class="card">
+        <li>
+          <button class="btn-Episode" @click="getCharactersEpisode">
+            <h1 class="card-content-paragrapg">{{ episode.name }}</h1>
+            <div class="card-characters">
+              <p style="color: blue" class="card-content-span">
+                {{ episode.air_date }}
+              </p>
+            </div>
+          </button>
+        </li>
+      </div>
+    </ul>
+    <div class="btn-container">
+      <PaginationBtnComponent
+        @click="scrollToTop(), prevEpisodes()"
+        nameBtn="prev"
+      ></PaginationBtnComponent>
+      <span>{{ counter }}</span>
+      <PaginationBtnComponent
+        @click="scrollToTop(), nextEpisodess()"
+        nameBtn="next"
+      ></PaginationBtnComponent>
     </div>
-  </ul>
-  <div class="btn-container">
-    <PaginationBtnComponent
-      @click="scrollToTop(), prevEpisodes()"
-      nameBtn="prev"
-    ></PaginationBtnComponent>
-    <span>{{ counter }}</span>
-    <PaginationBtnComponent
-      @click="scrollToTop(), nextEpisodess()"
-      nameBtn="next"
-    ></PaginationBtnComponent>
   </div>
 </template>
 
@@ -106,10 +108,10 @@ export default {
 ul {
   list-style: none;
 }
-.btn-Episode{
+.btn-Episode {
   border: none;
-   background: none;
-  width: 100%;    
+  background: none;
+  width: 100%;
   cursor: pointer;
 }
 </style>
